@@ -27,19 +27,19 @@ texture = SubResource("GradientTexture2D_4w5j4")
 shape = SubResource("RectangleShape2D_a2e3c")
 debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
 
-[node name="Plateforms" type="Node2D" parent="." unique_id=363644857]
+[node name="Platforms" type="Node2D" parent="." unique_id=363644857]
 
-[node name="OneWayPlateforms" parent="Plateforms" unique_id=1273532387 instance=ExtResource("1_sgctp")]
+[node name="OneWayPlatforms" parent="Platforms" unique_id=1273532387 instance=ExtResource("1_sgctp")]
 position = Vector2(32, -72)
 
-[node name="OneWayPlateforms2" parent="Plateforms" unique_id=1171615635 instance=ExtResource("1_sgctp")]
+[node name="OneWayPlatforms2" parent="Platforms" unique_id=1171615635 instance=ExtResource("1_sgctp")]
 position = Vector2(96, -72)
 
-[node name="OneWayPlateforms3" parent="Plateforms" unique_id=1454292817 instance=ExtResource("1_sgctp")]
+[node name="OneWayPlatforms3" parent="Platforms" unique_id=1454292817 instance=ExtResource("1_sgctp")]
 position = Vector2(160, -136)
 
-[node name="OneWayPlateforms4" parent="Plateforms" unique_id=140149892 instance=ExtResource("1_sgctp")]
+[node name="OneWayPlatforms4" parent="Platforms" unique_id=140149892 instance=ExtResource("1_sgctp")]
 position = Vector2(288, -200)
 
-[node name="OneWayPlateforms5" parent="Plateforms" unique_id=1625222985 instance=ExtResource("1_sgctp")]
+[node name="OneWayPlatforms5" parent="Platforms" unique_id=1625222985 instance=ExtResource("1_sgctp")]
 position = Vector2(32, -264)
