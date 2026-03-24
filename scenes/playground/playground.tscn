@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://bqcytp5rapjqr"]
+
+[ext_resource type="PackedScene" uid="uid://bi76t386kdqam" path="res://scenes/playground/platform/platforms.tscn" id="1_sgctp"]
+
+[sub_resource type="Gradient" id="Gradient_uwrxv"]
+offsets = PackedFloat32Array(0.6987952, 0.97590363, 0.9879518)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4w5j4"]
+gradient = SubResource("Gradient_uwrxv")
+width = 1000
+height = 20
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a2e3c"]
+size = Vector2(992, 16)
+
+[node name="Playgound" type="Node2D" unique_id=759718683]
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=238153210]
+
+[node name="GroundSprite" type="Sprite2D" parent="Ground" unique_id=50151639]
+position = Vector2(-2.4318695e-05, 4.172325e-07)
+scale = Vector2(0.992, 0.8)
+texture = SubResource("GradientTexture2D_4w5j4")
+
+[node name="GroundCollision" type="CollisionShape2D" parent="Ground" unique_id=1868594126]
+shape = SubResource("RectangleShape2D_a2e3c")
+debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
+
+[node name="Plateforms" type="Node2D" parent="." unique_id=363644857]
+
+[node name="OneWayPlateforms" parent="Plateforms" unique_id=1273532387 instance=ExtResource("1_sgctp")]
+position = Vector2(32, -72)
+
+[node name="OneWayPlateforms2" parent="Plateforms" unique_id=1171615635 instance=ExtResource("1_sgctp")]
+position = Vector2(96, -72)
+
+[node name="OneWayPlateforms3" parent="Plateforms" unique_id=1454292817 instance=ExtResource("1_sgctp")]
+position = Vector2(160, -136)
+
+[node name="OneWayPlateforms4" parent="Plateforms" unique_id=140149892 instance=ExtResource("1_sgctp")]
+position = Vector2(288, -200)
+
+[node name="OneWayPlateforms5" parent="Plateforms" unique_id=1625222985 instance=ExtResource("1_sgctp")]
+position = Vector2(32, -264)
