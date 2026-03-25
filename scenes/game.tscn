@@ -1,29 +1,11 @@
 [gd_scene format=3 uid="uid://betwj3ksgngwi"]
 
 [ext_resource type="PackedScene" uid="uid://bqcytp5rapjqr" path="res://scenes/playground/playground.tscn" id="1_uwrxv"]
-[ext_resource type="Script" uid="uid://b58bj4u31xqtm" path="res://scripts/player.gd" id="2_yqjtg"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uwrxv"]
-size = Vector2(38, 38)
+[ext_resource type="PackedScene" uid="uid://dwlavivnaouhb" path="res://scenes/player.tscn" id="2_yqjtg"]
 
 [node name="Game" type="Node2D" unique_id=264586059]
 
-[node name="Main Camera" type="Camera2D" parent="." unique_id=1949176285]
-
 [node name="Playgound" parent="." unique_id=759718683 instance=ExtResource("1_uwrxv")]
 
-[node name="Player" type="CharacterBody2D" parent="." unique_id=171724381]
-position = Vector2(-1, -30)
-script = ExtResource("2_yqjtg")
-
-[node name="Color" type="ColorRect" parent="Player" unique_id=1474426188]
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-color = Color(0.9762532, 0.0007835686, 0.97624665, 1)
-metadata/_edit_use_anchors_ = true
-
-[node name="PlayerCollision" type="CollisionShape2D" parent="Player" unique_id=2079523849]
-shape = SubResource("RectangleShape2D_uwrxv")
-debug_color = Color(0.8759354, 0.25661168, 0.58461076, 0.41960785)
+[node name="Player" parent="." unique_id=1003749393 instance=ExtResource("2_yqjtg")]
+position = Vector2(0, -32)
