@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bi76t386kdqam"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8tiqt"]
-size = Vector2(62, 15)
+size = Vector2(62, 16)
 
 [node name="OneWayPlateforms" type="Node2D" unique_id=1273532387]
 
@@ -15,6 +15,5 @@ offset_bottom = 8.0
 metadata/_edit_use_anchors_ = true
 
 [node name="OneWayPlateformCollision" type="CollisionShape2D" parent="OneWayPlateformBody" unique_id=1201692666]
-position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_8tiqt")
 one_way_collision = true

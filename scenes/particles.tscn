@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://c85argb8ykblj"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ynjm5"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 5.0
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 150.0
+angular_velocity_min = -360.0
+angular_velocity_max = 359.99997
+gravity = Vector3(0, 400, 0)
+scale_min = 3.0
+scale_max = 8.0
+color = Color(0.9764706, 0, 0.9764706, 0.58431375)
+
+[node name="JumpParticules" type="GPUParticles2D" unique_id=1382424357]
+emitting = false
+amount = 12
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ynjm5")
