@@ -42,8 +42,8 @@ func _physics_process(delta: float) -> void:
 
 func _animations() -> void:
 	if animation_player.has_animation("jump"):
-		if $AnimationPlayer.is_playing():
-			$AnimationPlayer.stop()
+		if animation_player.is_playing():
+			animation_player.stop()
 			
 		animation_player.play("jump")
 	else:
