@@ -12,6 +12,7 @@ offset_left = -32.0
 offset_top = -8.0
 offset_right = 32.0
 offset_bottom = 8.0
+color = Color(0.5019608, 0.8, 1, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="OneWayPlateformCollision" type="CollisionShape2D" parent="OneWayPlateformBody" unique_id=1201692666]
