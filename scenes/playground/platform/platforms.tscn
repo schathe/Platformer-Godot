@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bi76t386kdqam"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8tiqt"]
-size = Vector2(62, 16)
+size = Vector2(64, 16)
 
 [node name="OneWayPlateforms" type="Node2D" unique_id=1273532387]
 
