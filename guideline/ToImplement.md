@@ -1,6 +1,6 @@
-| **Mécanique** | **Complexité** | **Impact Fun** | **Temps Implémentation** | **Potentiel Puzzle** | **Difficulté à Maîtriser** |
-|---|:---:|:---:|:---:|:---:|:---:|
-| Double saut | Très faible | Élevé | 10 min | Bas | Très facile |
+| **Mécanique** | **Complexité** | **Impact Fun** | **Temps Implémentation** | **Potentiel Puzzle** | **Difficulté à Maîtriser** | **Status** |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|
+| Double saut | Très faible | Élevé | 10 min | Bas | Très facile | *Done* |
 | Plateforme destructible | Faible | Moyen | 20 min | Bas | Facile |
 | Dash | Moyen | Très élevé | 25 min | Moyen | Moyen |
 | Rebond/Trampoline | Très faible | Moyen-élevé | 10 min | Bas | Très facile |
