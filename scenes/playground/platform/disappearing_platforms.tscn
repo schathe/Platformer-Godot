@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cs3dbhw756004"]
+
+[ext_resource type="Script" uid="uid://cxcfqlktgept5" path="res://scenes/playground/platform/disappearing_plateform.gd" id="1_qkt0x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_56pid"]
+size = Vector2(64, 15)
+
+[node name="DisappearingPlatforms" type="Node2D" unique_id=1263224276]
+
+[node name="DisappearingPlateformBody" type="StaticBody2D" parent="." unique_id=156361976 node_paths=PackedStringArray("collision_shape", "shape")]
+script = ExtResource("1_qkt0x")
+collision_shape = NodePath("DisappearingPlateformCollision")
+shape = NodePath("DisappearingPlateformColor")
+
+[node name="DisappearingPlateformColor" type="ColorRect" parent="DisappearingPlateformBody" unique_id=1877615236]
+offset_left = -32.0
+offset_top = -8.0
+offset_right = 32.0
+offset_bottom = 8.0
+metadata/_edit_use_anchors_ = true
+
+[node name="DisappearingPlateformCollision" type="CollisionShape2D" parent="DisappearingPlateformBody" unique_id=579462436]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_56pid")
+one_way_collision = true

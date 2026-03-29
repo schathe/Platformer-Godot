@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bqcytp5rapjqr"]
 
 [ext_resource type="PackedScene" uid="uid://bi76t386kdqam" path="res://scenes/playground/platform/platforms.tscn" id="1_sgctp"]
+[ext_resource type="PackedScene" uid="uid://cs3dbhw756004" path="res://scenes/playground/platform/disappearing_platforms.tscn" id="2_8absr"]
 
 [sub_resource type="Gradient" id="Gradient_uwrxv"]
 offsets = PackedFloat32Array(0.6987952, 0.97590363, 0.9879518)
@@ -29,17 +30,24 @@ debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
 
 [node name="Platforms" type="Node2D" parent="." unique_id=363644857]
 
-[node name="OneWayPlatforms" parent="Platforms" unique_id=1273532387 instance=ExtResource("1_sgctp")]
+[node name="LVL_Tuto" type="Node2D" parent="Platforms" unique_id=982220715]
+
+[node name="OneWayPlatforms" parent="Platforms/LVL_Tuto" unique_id=1273532387 instance=ExtResource("1_sgctp")]
 position = Vector2(32, -72)
 
-[node name="OneWayPlatforms2" parent="Platforms" unique_id=1171615635 instance=ExtResource("1_sgctp")]
+[node name="OneWayPlatforms2" parent="Platforms/LVL_Tuto" unique_id=1171615635 instance=ExtResource("1_sgctp")]
 position = Vector2(96, -72)
 
-[node name="OneWayPlatforms3" parent="Platforms" unique_id=1454292817 instance=ExtResource("1_sgctp")]
+[node name="OneWayPlatforms3" parent="Platforms/LVL_Tuto" unique_id=1454292817 instance=ExtResource("1_sgctp")]
 position = Vector2(160, -136)
 
-[node name="OneWayPlatforms4" parent="Platforms" unique_id=140149892 instance=ExtResource("1_sgctp")]
+[node name="OneWayPlatforms4" parent="Platforms/LVL_Tuto" unique_id=140149892 instance=ExtResource("1_sgctp")]
 position = Vector2(288, -200)
 
-[node name="OneWayPlatforms5" parent="Platforms" unique_id=1625222985 instance=ExtResource("1_sgctp")]
+[node name="OneWayPlatforms5" parent="Platforms/LVL_Tuto" unique_id=1625222985 instance=ExtResource("1_sgctp")]
 position = Vector2(32, -264)
+
+[node name="DisappearingPlatforms" parent="Platforms/LVL_Tuto" unique_id=1263224276 instance=ExtResource("2_8absr")]
+position = Vector2(-38, -72)
+
+[node name="WorldBorders" type="Node2D" parent="." unique_id=208532559]
