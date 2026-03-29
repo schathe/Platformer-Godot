@@ -15,3 +15,6 @@
 | Mini-carte | Faible | Moyen | 30 min | Accessoire |
 
 Voir correspondances TOOD.md (Discord)
+
+
+Ajouter un système de mort / respawn
