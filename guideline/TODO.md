@@ -81,7 +81,7 @@ func _physics_process(delta):
     var input_dir = Input.get_axis("ui_left", "ui_right")
     velocity.x = input_dir * 300
     
-    velocity = move_and_slide(velocity, Vector2.UP)
+    velocity = move_and_slide(velocity)
 ```
 
 **Astuce** : Ajoute du **coyote time** pour que le joueur puisse sauter même s'il vient juste de quitter une plateforme (donne une sensation plus généreuse).
@@ -221,14 +221,14 @@ func _physics_process(delta):
         velocity = jump
     
     velocity.y += GRAVITY * delta
-    velocity = move_and_slide(velocity, Vector2.UP)
+    velocity = move_and_slide(velocity)
 ```
 
 **Alternative plus simple** (détection avec Area2D) :
 ```gdscript
 func _ready():
-    $WallDetector.connect("body_entered", self, "_on_wall_detected")
-    $WallDetector.connect("body_exited", self, "_on_wall_left")
+    $WallDetector.body_entered.connect(_on_wall_detected)
+    $WallDetector.body_exited.connect(_on_wall_left)
 
 var touching_wall = false
 
@@ -244,6 +244,8 @@ func _physics_process(delta):
     
     if Input.is_action_just_pressed("jump") and touching_wall:
         velocity = WALL_JUMP_FORCE
+    
+    velocity = move_and_slide(velocity)
 ```
 
 ---
@@ -278,14 +280,14 @@ func _physics_process(delta):
         dash_timer -= delta
         if dash_timer <= 0:
             is_dashing = false
-            yield(get_tree().create_timer(DASH_COOLDOWN), "timeout")
+            await get_tree().create_timer(DASH_COOLDOWN).timeout
             can_dash = true
     else:
         # Gravité et mouvement normal
         velocity.y += GRAVITY * delta
         velocity.x = Input.get_axis("ui_left", "ui_right") * 300
     
-    velocity = move_and_slide(velocity, Vector2.UP)
+    velocity = move_and_slide(velocity)
 ```
 
 ---
@@ -316,9 +318,7 @@ func _physics_process(delta):
     if Input.is_action_just_pressed("jump") and is_on_floor():
         velocity -= gravity_vector.normalized() * 500
     
-    # move_and_slide avec direction "up" adaptée
-    var up_direction = -gravity_vector.normalized()
-    velocity = move_and_slide(velocity, up_direction)
+    velocity = move_and_slide(velocity)
 ```
 
 **Astuce visuelle** : Affiche une flèche qui indique la direction de gravité actuelle.
@@ -341,7 +341,7 @@ var destroyed = false
 var is_colliding = false
 
 func _ready():
-    $CollisionShape2D.connect("body_entered", self, "_on_body_entered")
+    body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body):
     if body.is_in_group("player") and not destroyed:
@@ -350,11 +350,11 @@ func _on_body_entered(body):
 func trigger_destruction():
     destroyed = true
     $Sprite.modulate = Color.gray  # Feedback visuel
-    yield(get_tree().create_timer(destruction_delay), "timeout")
+    await get_tree().create_timer(destruction_delay).timeout
     $CollisionShape2D.disabled = true
     $Sprite.hide()
     
-    yield(get_tree().create_timer(respawn_time), "timeout")
+    await get_tree().create_timer(respawn_time).timeout
     respawn()
 
 func respawn():
@@ -383,14 +383,14 @@ func _physics_process(delta):
     var input_dir = Input.get_axis("ui_left", "ui_right")
     velocity.x = lerp(velocity.x, input_dir * 300, 0.15 * current_friction)
     velocity.y += GRAVITY * delta
-    velocity = move_and_slide(velocity, Vector2.UP)
+    velocity = move_and_slide(velocity)
 
 # Zone de friction
 extends Area2D
 
 func _ready():
-    connect("body_entered", self, "_on_body_entered")
-    connect("body_exited", self, "_on_body_exited")
+    body_entered.connect(_on_body_entered)
+    body_exited.connect(_on_body_exited)
 
 func _on_body_entered(body):
     if body.is_in_group("player"):
@@ -416,7 +416,7 @@ extends Area2D
 @export var bounce_scale = 1.5  # Agrandit temporairement pour feedback
 
 func _ready():
-    connect("body_entered", self, "_on_body_entered")
+    body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body):
     if body.is_in_group("player"):
@@ -587,7 +587,7 @@ extends Area2D
 signal collected(type, amount)
 
 func _ready():
-    connect("body_entered", self, "_on_body_entered")
+    body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body):
     if body.is_in_group("player"):
@@ -707,7 +707,7 @@ func take_damage(amount: int):
         # Invulnérabilité temporaire
         invulnerable = true
         $Sprite.modulate = Color.red
-        yield(get_tree().create_timer(0.5), "timeout")
+        await get_tree().create_timer(0.5).timeout
         $Sprite.modulate = Color.white
         invulnerable = false
 
@@ -725,7 +725,7 @@ extends Area2D
 @export var damage = 10
 
 func _ready():
-    connect("body_entered", self, "_on_body_entered")
+    body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body):
     if body.is_in_group("player") and not body.invulnerable:
@@ -779,7 +779,7 @@ func _physics_process(delta):
             if abs(global_position.x - get_parent().global_position.x) > patrol_range:
                 direction *= -1
     
-    velocity = move_and_slide(velocity, Vector2.UP)
+    velocity = move_and_slide(velocity)
     
     # Détection collision avec joueur
     for i in range(get_slide_collision_count()):
@@ -825,7 +825,7 @@ func phase1_behavior(delta):
         velocity.x = 150 * sign(player.global_position.x - global_position.x)
     
     velocity.y += 800 * delta
-    velocity = move_and_slide(velocity, Vector2.UP)
+    velocity = move_and_slide(velocity)
 
 func phase2_behavior(delta):
     # Phase 2 : plus rapide, attaques multiples
@@ -837,7 +837,7 @@ func phase2_behavior(delta):
         velocity.y = -400  # Saute régulièrement
     
     velocity.y += 800 * delta
-    velocity = move_and_slide(velocity, Vector2.UP)
+    velocity = move_and_slide(velocity)
 
 func phase3_behavior(delta):
     # Phase 3 : très agressif
@@ -882,7 +882,7 @@ extends Area2D
 signal checkpoint_reached(id)
 
 func _ready():
-    connect("body_entered", self, "_on_body_entered")
+    body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body):
     if body.is_in_group("player"):
@@ -901,7 +901,7 @@ func die():
     global_position = current_checkpoint
     current_health = max_health
     invulnerable = true
-    yield(get_tree().create_timer(1.0), "timeout")
+    await get_tree().create_timer(1.0).timeout
     invulnerable = false
 ```
 
@@ -973,8 +973,8 @@ var is_activated = false
 signal lever_activated
 
 func _ready():
-    connect("body_entered", self, "_on_body_entered")
-    connect("body_exited", self, "_on_body_exited")
+    body_entered.connect(_on_body_entered)
+    body_exited.connect(_on_body_exited)
 
 func _on_body_entered(body):
     if body.is_in_group("player") and Input.is_action_just_pressed("interact"):
@@ -998,8 +998,8 @@ extends Area2D
 var bodies_on_plate = 0
 
 func _ready():
-    connect("body_entered", self, "_on_body_entered")
-    connect("body_exited", self, "_on_body_exited")
+    body_entered.connect(_on_body_entered)
+    body_exited.connect(_on_body_exited)
 
 func _on_body_entered(body):
     bodies_on_plate += 1
@@ -1030,8 +1030,8 @@ extends Area2D
 var bodies_in_water = []
 
 func _ready():
-    connect("body_entered", self, "_on_body_entered")
-    connect("body_exited", self, "_on_body_exited")
+    body_entered.connect(_on_body_entered)
+    body_exited.connect(_on_body_exited)
 
 func _on_body_entered(body):
     if body.is_in_group("player"):
@@ -1054,6 +1054,8 @@ func _physics_process(delta):
         velocity.x *= water_resistance
     else:
         velocity.y += GRAVITY * delta
+    
+    velocity = move_and_slide(velocity)
 ```
 
 ---
@@ -1117,7 +1119,7 @@ func _on_body_entered(body):
     if body.is_in_group("player"):
         # Transition
         $AnimationPlayer.play("fade_out")
-        yield($AnimationPlayer, "animation_finished")
+        await $AnimationPlayer.animation_finished
         
         body.global_position = spawn_position
         emit_signal("room_changed", destination_room)
@@ -1303,9 +1305,9 @@ res://
    }
    
    func save_game():
-       var file = File.new()
-       file.open("user://savegame.json", File.WRITE)
-       file.store_var(save_data)
+       var file = FileAccess.open("user://savegame.json", FileAccess.WRITE)
+       if file:
+           file.store_var(save_data)
    ```
 
 4. **Design des Zones** : Chaque zone doit avoir un thème visuel distinct (même avec formes).
