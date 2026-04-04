@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="PlatformerColors" format=3 uid="uid://d4chkxff6mv7u"]
+
+[ext_resource type="Script" uid="uid://cj115eu030q5k" path="res://assets/colors.gd" id="1_3v7xy"]
+
+[resource]
+script = ExtResource("1_3v7xy")
+metadata/_custom_type_script = "uid://cj115eu030q5k"
