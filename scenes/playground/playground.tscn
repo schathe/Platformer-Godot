@@ -48,6 +48,6 @@ position = Vector2(288, -200)
 position = Vector2(32, -264)
 
 [node name="DisappearingPlatforms" parent="Platforms/LVL_Tuto" unique_id=1263224276 instance=ExtResource("2_8absr")]
-position = Vector2(-38, -72)
+position = Vector2(-40, -72)
 
 [node name="WorldBorders" type="Node2D" parent="." unique_id=208532559]
